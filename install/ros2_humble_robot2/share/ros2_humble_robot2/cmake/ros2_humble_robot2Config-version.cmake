@@ -1,0 +1,1 @@
+/home/sai/ros2_humble_robot2/build/ros2_humble_robot2/ament_cmake_core/ros2_humble_robot2Config-version.cmake
