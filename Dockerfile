@@ -48,9 +48,10 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
     ros-humble-gazebo-plugins 
     # opencv-contrib-python
 
-# RUN mkdir -p /home/ros2_ws/src \
-#     && cd /home/ros2_ws/src/ \
-#     && git clone https://github.com/chaithanya121/ros2_humble_robot2.git 
+
+RUN mkdir -p ldlidar_ros2_ws/src \
+    && cd /home/ldlidar_ros2_ws/src \
+    && git clone https://github.com/ldrobotSensorTeam/ldlidar_stl_ros2.git 
     #  \
     # && rosdep fix-permissions && rosdep update \
     # && rosdep install --from-paths ./ -i -y --rosdistro humble \
@@ -58,15 +59,20 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
 # RUN cd /home/ros2_ws/ros2_humble_robot2 \
 #       && git pull
 
-
 RUN cd /home/ros2_ws/ \
   && . /opt/ros/humble/setup.sh \
   && colcon build --merge-install
 
+RUN cd /home/ldlidar_ros2_ws/ \
+  && . /opt/ros/humble/setup.sh \
+  && colcon build --merge-install
+
 RUN echo "source /home/ros2_ws/install/setup.bash" >> ~/.bashrc
+RUN echo "source /home/ldlidar_ros2_ws/install/setup.bash" >> ~/.bashrc
 
+ENV GAZEBO_MASTER_URI http://localhost:11348
 
-ENV GAZEBO_MASTER_URI http://localhost:23456
+# export GAZEBO_MASTER_URI=http://localhost:11348
 # ENV GAZEBO_MODEL_PATH /path/to/your/gazebo/models
 
 
