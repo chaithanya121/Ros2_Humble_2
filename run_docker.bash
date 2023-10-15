@@ -9,8 +9,8 @@ xhost local:root
 XAUTH=/tmp/.docker.xauth
 
 
-docker run -it \
-    --name=r2_pathplanning_container \
+sudo docker run -it \
+    --name=my_robot_test \
     --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
@@ -18,7 +18,7 @@ docker run -it \
     --volume="$XAUTH:$XAUTH" \
     --net=host \
     --privileged \
-    haiderabbasi333/ros2-pathplanning-course:1 \
+    my_robot:latest \
     bash
 
 echo "Done."
